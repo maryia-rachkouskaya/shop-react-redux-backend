@@ -1,0 +1,22 @@
+{
+  "name": "shop-react-redux-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/maryia-rachkouskaya/shop-react-redux-backend.git"
+  },
+  "author": "Maryia Rachkouskaya",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/maryia-rachkouskaya/shop-react-redux-backend/issues"
+  },
+  "homepage": "https://github.com/maryia-rachkouskaya/shop-react-redux-backend#readme",
+  "dependencies": {
+    "prettier": "^2.8.4"
+  }
+}
