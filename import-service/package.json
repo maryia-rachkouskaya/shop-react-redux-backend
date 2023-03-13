@@ -1,0 +1,17 @@
+{
+  "name": "import-service",
+  "version": "1.0.0",
+  "description": "",
+  "main": "consts.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Maryia Rachkouskaya",
+  "license": "ISC",
+  "dependencies": {
+    "@aws-sdk/client-s3": "^3.290.0",
+    "aws-sdk": "^2.1334.0",
+    "csv-parser": "^3.0.0",
+    "dotenv": "^16.0.3"
+  }
+}
