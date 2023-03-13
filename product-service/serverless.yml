@@ -20,9 +20,11 @@ service: product-service
 # Check out our docs for more details
 frameworkVersion: '3'
 
+useDotenv: true
+
 provider:
   name: aws
-  runtime: nodejs12.x
+  runtime: nodejs18.x
 
 # you can overwrite defaults here
   stage: dev
@@ -45,10 +47,26 @@ provider:
 #              - - "arn:aws:s3:::"
 #                - "Ref" : "ServerlessDeploymentBucket"
 #                - "/*"
+  iam:
+    role:
+      statements:
+        - Effect: Allow
+          Action:
+            - dynamodb:DescribeTable
+            - dynamodb:Query
+            - dynamodb:Scan
+            - dynamodb:GetItem
+            - dynamodb:PutItem
+            - dynamodb:UpdateItem
+            - dynamodb:DeleteItem
+            - dynamodb:BatchGetItem
+            - dynamodb:BatchWriteItem
+          Resource: 'arn:aws:dynamodb:eu-north-1:*:*'
 
 # you can define service wide environment variables here
-#  environment:
-#    variable1: value1
+  environment:
+    ProductsTable: ${env:PRODUCTS_TABLE}
+    StocksTable: ${env:STOCKS_TABLE}
 
 # you can add packaging information here
 #package:
@@ -60,17 +78,23 @@ provider:
 
 functions:
   getProductsList:
-    handler: handler.getProductsList
+    handler: handlers/getProductsList.getProductsList
     events:
       - http:
           path: products
           method: get
   getProductsById:
-    handler: handler.getProductsById
+    handler: handlers/getProductsById.getProductsById
     events:
       - http:
           path: products/{productId}
           method: get
+  createProduct:
+    handler: handlers/createProduct.createProduct
+    events:
+      - http:
+          path: products
+          method: post
 #    The following are a few example events you can configure
 #    NOTE: Please make sure to change your handler code to work with those events
 #    Check the event documentation for details
